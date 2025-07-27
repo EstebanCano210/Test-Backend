@@ -1,0 +1,1123 @@
+{
+	"info": {
+		"_postman_id": "bb02d649-158b-4680-a679-037bd0cf6bcb",
+		"name": "EmpleaYa API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42121262",
+		"_collection_link": "https://ads444-2244.postman.co/workspace/zdasd~126e6ef0-f925-41ee-82d6-2a7a2b93ad8e/collection/42121262-bb02d649-158b-4680-a679-037bd0cf6bcb?action=share&source=collection_link&creator=42121262"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Auth - Registro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Kevin\",\n  \"surname\": \"Castillo\",\n  \"username\": \"kcastillo\",\n  \"email\": \"kevin@example.com\",\n  \"password\": \"12345678\",\n  \"phone\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v2/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v2",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth - Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"ecano@gmail.com\",\n  \"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth - Login Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"kevin02@example.com\",\n  \"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth - definirRol",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1ODAyZGYwY2RlNmY1OTI1Y2QyMzgiLCJpYXQiOjE3NTM1Nzk1NzUsImV4cCI6MTc1MzU5MDM3NX0.zz96Mj6ztyZjC91rginc7JxQqjUC7qPK1Z9WQ6p5cQQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "role",
+									"value": "ADMIN_COMPANY",
+									"type": "text"
+								},
+								{
+									"key": "nuevaEmpresa",
+									"value": "{\"name\":\"Intel Inc\",\n\"industry\":\"Tecnología\",\n\"location\":\"Ciudad de Guatemala\",\n\"description\":\"Somos Intel\"}",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Esteban/Pictures/Screenshots/Captura de pantalla 2025-03-19 075316.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/auth/definir-rol",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"auth",
+								"definir-rol"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Jobs",
+			"item": [
+				{
+					"name": "Crear trabajo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "POST http://localhost:3000/EmpleaYa/v2/jobs\n",
+							"protocol": "POST http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"jobs\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar una oferta existente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1ODAyZGYwY2RlNmY1OTI1Y2QyMzgiLCJpYXQiOjE3NTM2MzkzNzgsImV4cCI6MTc1MzY1MDE3OH0.Zp-nlwRxr2WP5Sbjw6eqB1gdECWBgR5C1zMl-a-tgOY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/jobs/68858071f0cde6f5925cd241",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"jobs",
+								"68858071f0cde6f5925cd241"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listado de trabajos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1NmRjMDMyNDQxNWQyZWVkMjRlNzkiLCJpYXQiOjE3NTM2MzkxMjksImV4cCI6MTc1MzY0OTkyOX0.E_bL1CSg8dHA6pGTINl9uAcwFy3Bq5Lo2LyXA6xFz6I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/jobs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver una oferta por ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1NmRjMDMyNDQxNWQyZWVkMjRlNzkiLCJpYXQiOjE3NTM2MzkxMjksImV4cCI6MTc1MzY0OTkyOX0.E_bL1CSg8dHA6pGTINl9uAcwFy3Bq5Lo2LyXA6xFz6I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/jobs/68856d41324415d2eed24e74",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"jobs",
+								"68856d41324415d2eed24e74"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar oferta",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "POST http://localhost:3000/EmpleaYa/v2/jobs\n",
+							"protocol": "POST http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"jobs\n"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Postulation",
+			"item": [
+				{
+					"name": "Aplicar a trabajo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/applications/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"applications",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Solicitudes del usuario",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1NmRjMDMyNDQxNWQyZWVkMjRlNzkiLCJpYXQiOjE3NTM1Nzg5NzgsImV4cCI6MTc1MzU4OTc3OH0.avmwSzx5EXCNAAcVeFqJAv1fwLau-n2qxum3brpDMZE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/applications/user/68856dc0324415d2eed24e79",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"applications",
+								"user",
+								"68856dc0324415d2eed24e79"
+							],
+							"query": [
+								{
+									"key": "x-token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1NmRjMDMyNDQxNWQyZWVkMjRlNzkiLCJpYXQiOjE3NTM1Nzg5NzgsImV4cCI6MTc1MzU4OTc3OH0.avmwSzx5EXCNAAcVeFqJAv1fwLau-n2qxum3brpDMZE",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar solicitud",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1NmRjMDMyNDQxNWQyZWVkMjRlNzkiLCJpYXQiOjE3NTM1NzYyNTEsImV4cCI6MTc1MzU4NzA1MX0.a-XRqjRxUaaHSttGBRCqUCG4Rnc-4NI-hl9028a80Vk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/applications/68856ebd4726c13e664a4a4f/cancel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"applications",
+								"68856ebd4726c13e664a4a4f",
+								"cancel"
+							],
+							"query": [
+								{
+									"key": "x-token",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar solicitud Copy",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1ODAyZGYwY2RlNmY1OTI1Y2QyMzgiLCJpYXQiOjE3NTM2NDE4NDUsImV4cCI6MTc1MzY1MjY0NX0.t9JYF-rPJKcRZWAGo7N7OAr4luU32kfYZLBwk99NdG8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"estado\": \"aceptado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/applications/68865cd67f5677a2cc1ac6cb/estado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"applications",
+								"68865cd67f5677a2cc1ac6cb",
+								"estado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Candidatos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "POST http://localhost:3000/EmpleaYa/v2/jobs\n",
+							"protocol": "POST http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"jobs\n"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Subir Cv",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1ODI1OWYwY2RlNmY1OTI1Y2QyNjgiLCJpYXQiOjE3NTM1ODA5NTUsImV4cCI6MTc1MzU5MTc1NX0.rmdfQR2e-59QzrCdISLv-6dAxl1DA7NZHNzuhVi3Nak",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cv",
+									"type": "file",
+									"src": "/C:/Users/Esteban/Downloads/Propuesta EmpleaYa G1.pdf"
+								},
+								{
+									"key": "",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/users/68856dc0324415d2eed24e79/upload-cv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"users",
+								"68856dc0324415d2eed24e79",
+								"upload-cv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subir Foto Perfil",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1ODI1OWYwY2RlNmY1OTI1Y2QyNjgiLCJpYXQiOjE3NTM1ODA5NTUsImV4cCI6MTc1MzU5MTc1NX0.rmdfQR2e-59QzrCdISLv-6dAxl1DA7NZHNzuhVi3Nak",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cv",
+									"type": "file",
+									"src": "/C:/Users/Esteban/Downloads/Propuesta EmpleaYa G1.pdf"
+								},
+								{
+									"key": "",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/users/68856dc0324415d2eed24e79/upload-cv",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"users",
+								"68856dc0324415d2eed24e79",
+								"upload-cv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Usuario",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1NmRjMDMyNDQxNWQyZWVkMjRlNzkiLCJpYXQiOjE3NTM1ODI3MjgsImV4cCI6MTc1MzU5MzUyOH0.TBkP7-0AHKDp3ZhYlRt_SS7GHMS6heDNTNkxg9O-42o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/users/68856dc0324415d2eed24e79",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"users",
+								"68856dc0324415d2eed24e79"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar datos",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1NmRjMDMyNDQxNWQyZWVkMjRlNzkiLCJpYXQiOjE3NTM1ODI3MjgsImV4cCI6MTc1MzU5MzUyOH0.TBkP7-0AHKDp3ZhYlRt_SS7GHMS6heDNTNkxg9O-42o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/users/68856dc0324415d2eed24e79",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"users",
+								"68856dc0324415d2eed24e79"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Contraseña",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1NmRjMDMyNDQxNWQyZWVkMjRlNzkiLCJpYXQiOjE3NTM1ODU2MDcsImV4cCI6MTc1MzU5NjQwN30.PzjxkqSfv7OZKP18ZmPmdTgWKCnhnWMD3qnDRm9XAnQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"actual\": \"12345678\",\r\n  \"nueva\": \"87654321\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/users/change-password/68856dc0324415d2eed24e79",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"users",
+								"change-password",
+								"68856dc0324415d2eed24e79"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "desactivar cuenta",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1NmRjMDMyNDQxNWQyZWVkMjRlNzkiLCJpYXQiOjE3NTM1ODU2MDcsImV4cCI6MTc1MzU5NjQwN30.PzjxkqSfv7OZKP18ZmPmdTgWKCnhnWMD3qnDRm9XAnQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"actual\": \"12345678\",\r\n  \"nueva\": \"87654321\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/users/change-password/68856dc0324415d2eed24e79",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"users",
+								"change-password",
+								"68856dc0324415d2eed24e79"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Message",
+			"item": [
+				{
+					"name": "enviar mensaje",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1NmRjMDMyNDQxNWQyZWVkMjRlNzkiLCJpYXQiOjE3NTM2MzQ1MzQsImV4cCI6MTc1MzY0NTMzNH0.BVKi7fCduxg5GbayU5pxXiH46Rl1lAtyX8GswJaRjZI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"to\": \"ID_DEL_RECEPTOR\",\r\n  \"message\": \"Texto del mensaje\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/messages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chat",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1NmRjMDMyNDQxNWQyZWVkMjRlNzkiLCJpYXQiOjE3NTM2MzQ1MzQsImV4cCI6MTc1MzY0NTMzNH0.BVKi7fCduxg5GbayU5pxXiH46Rl1lAtyX8GswJaRjZI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"to\": \"ID_DEL_RECEPTOR\",\r\n  \"message\": \"Texto del mensaje\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/messages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mis conversaciones",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1NmRjMDMyNDQxNWQyZWVkMjRlNzkiLCJpYXQiOjE3NTM2MzQ1MzQsImV4cCI6MTc1MzY0NTMzNH0.BVKi7fCduxg5GbayU5pxXiH46Rl1lAtyX8GswJaRjZI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"to\": \"ID_DEL_RECEPTOR\",\r\n  \"message\": \"Texto del mensaje\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/messages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mensajes no leidos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1NmRjMDMyNDQxNWQyZWVkMjRlNzkiLCJpYXQiOjE3NTM2MzQ1MzQsImV4cCI6MTc1MzY0NTMzNH0.BVKi7fCduxg5GbayU5pxXiH46Rl1lAtyX8GswJaRjZI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"to\": \"ID_DEL_RECEPTOR\",\r\n  \"message\": \"Texto del mensaje\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/messages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mensajes leidos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1NmRjMDMyNDQxNWQyZWVkMjRlNzkiLCJpYXQiOjE3NTM2MzQ1MzQsImV4cCI6MTc1MzY0NTMzNH0.BVKi7fCduxg5GbayU5pxXiH46Rl1lAtyX8GswJaRjZI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"to\": \"ID_DEL_RECEPTOR\",\r\n  \"message\": \"Texto del mensaje\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/messages/read/68858259f0cde6f5925cd268",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"messages",
+								"read",
+								"68858259f0cde6f5925cd268"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notificaciones",
+			"item": [
+				{
+					"name": "Notificaciones",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1ODAyZGYwY2RlNmY1OTI1Y2QyMzgiLCJpYXQiOjE3NTM2MzczNTcsImV4cCI6MTc1MzY0ODE1N30.XE9RH2hO7trFwUJiogeE7te-iv1gBtAzwo8DO1sxjjw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/notifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notificaciones leidas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg1ODAyZGYwY2RlNmY1OTI1Y2QyMzgiLCJpYXQiOjE3NTM2MzczNTcsImV4cCI6MTc1MzY0ODE1N30.XE9RH2hO7trFwUJiogeE7te-iv1gBtAzwo8DO1sxjjw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/notifications/read",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"notifications",
+								"read"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Companies",
+			"item": [
+				{
+					"name": "Listado de Companias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/companies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listado de Companias Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/companies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listado de Companias Copy 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/companies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listado de Companias Copy 3",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODg2NjVlMTdiNWJiZGViYTkyNDgyYjIiLCJpYXQiOjE3NTM2MzgzODUsImV4cCI6MTc1MzY0OTE4NX0.9Coq8WtUJ9i8Fra0UVQto-ZVakT3hvPqFtibTyT3s3U",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "industry",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Esteban/Pictures/reff.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/EmpleaYa/v2/companies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"EmpleaYa",
+								"v2",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "receptor_id",
+			"value": ""
+		}
+	]
+}
