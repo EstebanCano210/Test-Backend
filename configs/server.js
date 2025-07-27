@@ -47,7 +47,7 @@ const conectarDB = async () => {
 
 export const initServer = async () => {
   const app = express();
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 8000;
 
   const server = http.createServer(app); // ⬅️ usamos esto en vez de app.listen
   const io = new Server(server, {
