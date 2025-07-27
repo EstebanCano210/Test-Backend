@@ -17,7 +17,6 @@ import messageRoutes from '../src/messages/message.routes.js';
 import notificationRoutes from '../src/notifications/notification.routes.js';
 import userRoutes from '../src/users/user.routes.js'
 
-
 const middlewares = (app) => {
   app.use(cors());
   app.use(express.json());
@@ -26,13 +25,13 @@ const middlewares = (app) => {
 };
 
 const routes = (app) => {
-    app.use('/EmpleaYa/v2/auth', auhtRoutes)
-    app.use('/EmpleaYa/v2/companies', companyRoutes)
-    app.use('/EmpleaYa/v2/jobs', jobRoutes)
-    app.use('/EmpleaYa/v2/applications', applicationRoutes);
-    app.use('/EmpleaYa/v2/messages', messageRoutes);
-    app.use('/EmpleaYa/v2/notifications', notificationRoutes);
-    app.use('/EmpleaYa/v2/users', userRoutes);
+  app.use('/EmpleaYa/v2/auth', auhtRoutes)
+  app.use('/EmpleaYa/v2/companies', companyRoutes)
+  app.use('/EmpleaYa/v2/jobs', jobRoutes)
+  app.use('/EmpleaYa/v2/applications', applicationRoutes);
+  app.use('/EmpleaYa/v2/messages', messageRoutes);
+  app.use('/EmpleaYa/v2/notifications', notificationRoutes);
+  app.use('/EmpleaYa/v2/users', userRoutes);
 };
 
 const conectarDB = async () => {
@@ -41,34 +40,34 @@ const conectarDB = async () => {
     console.log("Conexion a la base de datos exitosa");
   } catch (error) {
     console.log("Error connecting to the database: ", error);
-    proccess.exit(1);
+    process.exit(1);
   }
 };
 
 export const initServer = async () => {
   const app = express();
-  const port = process.env.PORT || 8000;
+  const port = process.env.PORT; // ⚠️ solo usamos process.env.PORT
 
-  const server = http.createServer(app); // ⬅️ usamos esto en vez de app.listen
+  const server = http.createServer(app);
+
   const io = new Server(server, {
     cors: {
       origin: '*'
     }
   });
 
-  socketHandler(io); // ⬅️ manejamos los eventos
-
-  // Guardamos el io en la app para accederlo luego
+  socketHandler(io);
   app.set('socketio', io);
 
   try {
     middlewares(app);
     conectarDB();
     routes(app);
-    await createAdminUser(); // ⬅️ Aquí se crea el admin por defecto
+    await createAdminUser();
 
-    server.listen(port); // ⬅️ levantamos el server HTTP con Socket.io
-    console.log(`Server running on port: ${port}`);
+    server.listen(port, () => {
+      console.log(`Server running on port: ${port}`);
+    });
   } catch (e) {
     console.log(`Error starting the server: ${e}`);
   }
