@@ -8,20 +8,21 @@ import Application from './application.model.js';
 // Crear postulación
 export const applyToJob = async (req, res) => {
   try {
-    const { job, message, cvUrl } = req.body;
+    const { job, message } = req.body;
     const userId = req.user.id;
-    
+
     const yaExiste = await Application.findOne({ job, user: userId });
     if (yaExiste) {
       return res.status(400).json({ msg: 'Ya te has postulado a este empleo' });
     }
 
+    const postulante = await User.findById(userId);
+    const cvUrl = postulante.cvUrl || '';
+
     const nueva = new Application({ job, user: userId, message, cvUrl });
     await nueva.save();
 
-    const jobInfo     = await Job.findById(job).populate('createdBy', 'email name');
-    const postulante  = await User.findById(userId);
-
+    const jobInfo = await Job.findById(job).populate('createdBy', 'email name');
     if (jobInfo?.createdBy?.email) {
       await enviarNotificacionPostulacion(
         jobInfo.createdBy.email,
@@ -33,9 +34,9 @@ export const applyToJob = async (req, res) => {
 
     await notifyUser({
       userId: jobInfo.createdBy._id,
-      type: 'postulacion',
+      type:    'postulacion',
       content: `${postulante.name} ${postulante.surname} aplicó a tu oferta "${jobInfo.title}"`,
-      link: `/applications/job/${job}`
+      link:    `/applications/job/${job}`
     });
 
     res.status(201).json(nueva);
