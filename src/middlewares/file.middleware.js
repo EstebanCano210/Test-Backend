@@ -1,9 +1,17 @@
-import multer from 'multer';
+// src/middlewares/file.middleware.js
+import fs from 'fs';
 import path from 'path';
+import multer from 'multer';
+
+// Asegurarnos de que la carpeta tmp/ exista
+const tmpDir = path.join(process.cwd(), 'tmp');
+if (!fs.existsSync(tmpDir)) {
+  fs.mkdirSync(tmpDir, { recursive: true });
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'tmp/');
+    cb(null, tmpDir);  // ahora tmpDir existe
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
@@ -13,7 +21,13 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg', 'image/png'];
+  const allowedTypes = [
+    'application/pdf',
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'image/jpeg',
+    'image/png'
+  ];
   if (allowedTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
