@@ -9,18 +9,18 @@ export const register = async (req, res) => {
   try {
     const { name, surname, username, email, password, phone } = req.body;
 
-    const existeEmail = await User.findOne({ email });
-    if (existeEmail) {
+    // Verificar duplicados
+    if (await User.findOne({ email })) {
       return res.status(400).json({ msg: 'El correo ya está registrado' });
     }
-
-    const existeUsername = await User.findOne({ username });
-    if (existeUsername) {
+    if (await User.findOne({ username })) {
       return res.status(400).json({ msg: 'El nombre de usuario ya está en uso' });
     }
 
+    // Hashear contraseña
     const hashedPassword = await argon2.hash(password);
 
+    // Crear usuario
     const nuevoUsuario = new User({
       name,
       surname,
@@ -29,13 +29,19 @@ export const register = async (req, res) => {
       password: hashedPassword,
       phone
     });
-
     await nuevoUsuario.save();
 
-    res.status(201).json({ usuario: nuevoUsuario });
+    // Generar token
+    const token = await generarJWT(nuevoUsuario.id);
+
+    // Devolver usuario + token
+    return res.status(201).json({
+      usuario: nuevoUsuario.toJSON(),
+      token
+    });
   } catch (error) {
     console.error('❌ Error en el registro:', error);
-    res.status(500).json({ msg: 'Error al registrar usuario' });
+    return res.status(500).json({ msg: 'Error al registrar usuario' });
   }
 };
 

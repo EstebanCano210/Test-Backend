@@ -1,9 +1,7 @@
-// src/middlewares/file.middleware.js
 import fs from 'fs';
 import path from 'path';
 import multer from 'multer';
 
-// Asegurarnos de que la carpeta tmp/ exista
 const tmpDir = path.join(process.cwd(), 'tmp');
 if (!fs.existsSync(tmpDir)) {
   fs.mkdirSync(tmpDir, { recursive: true });
@@ -11,7 +9,7 @@ if (!fs.existsSync(tmpDir)) {
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, tmpDir);  // ahora tmpDir existe
+    cb(null, tmpDir);
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);

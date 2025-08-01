@@ -4,7 +4,8 @@ import {
   getJobs,
   getJobById,
   updateJob,
-  deleteJob
+  deleteJob,
+  getMyCompanyJobs      
 } from './job.controller.js';
 
 import { check } from 'express-validator';
@@ -14,6 +15,7 @@ import { validarJWT } from '../middlewares/validar-jwt.js';
 const router = Router();
 
 router.get('/', getJobs);
+router.get('/my', validarJWT, getMyCompanyJobs);
 router.get('/:id', getJobById);
 router.post(
   '/',

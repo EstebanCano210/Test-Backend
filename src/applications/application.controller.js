@@ -49,8 +49,15 @@ export const applyToJob = async (req, res) => {
 // Obtener postulaciones de un usuario
 export const getApplicationsByUser = async (req, res) => {
   try {
-    const apps = await Application.find({ user: req.params.userId })
-      .populate('job', 'title company')
+    const uid = req.user.id;
+
+    const apps = await Application
+      .find({ user: uid })
+      .populate({
+        path: 'job',
+        select: 'title createdAt',
+        populate: { path: 'company', select: 'name' }
+      })
       .sort({ createdAt: -1 });
 
     res.json(apps);
@@ -59,7 +66,6 @@ export const getApplicationsByUser = async (req, res) => {
     res.status(500).json({ msg: 'Error al obtener postulaciones del usuario' });
   }
 };
-
 // Obtener postulaciones de un empleo
 export const getApplicationsByJob = async (req, res) => {
   try {
@@ -71,6 +77,33 @@ export const getApplicationsByJob = async (req, res) => {
   } catch (error) {
     console.error('❌ Error al obtener candidatos:', error);
     res.status(500).json({ msg: 'Error al obtener candidatos' });
+  }
+};
+
+export const getCompanyApplications = async (req, res) => {
+  try {
+    const companyId = req.user.company;
+    if (!companyId) {
+      return res.status(400).json({ msg: 'No estás asociado a una empresa' });
+    }
+
+    // Buscamos todas las aplicaciones cuyo job pertenece a esta empresa
+    const apps = await Application.find()
+      .populate({
+        path: 'job',
+        match: { company: companyId, estado: true },
+        select: 'title'
+      })
+      .populate('user', 'name surname email profilePicture')
+      .sort({ createdAt: -1 });
+
+    // Filtramos las que realmente tengan job (las de otras empresas vienen con job=null)
+    const filtered = apps.filter(a => a.job);
+
+    res.json(filtered);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: 'Error al obtener solicitudes de la empresa' });
   }
 };
 

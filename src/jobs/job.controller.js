@@ -82,6 +82,67 @@ export const getJobs = async (req, res) => {
   }
 };
 
+export const getMyCompanyJobs = async (req, res) => {
+  try {
+    const companyId = req.user.company;
+    if (!companyId) {
+      return res.status(400).json({ msg: 'No estás asociado a ninguna empresa' });
+    }
+
+    // Paginación y filtros opcionales
+    const {
+      title = '',
+      location = '',
+      limit  = 10,
+      page   = 1
+    } = req.query;
+
+    const query = {
+      estado:  true,
+      company: companyId,
+      title:    { $regex: title,    $options: 'i' },
+      location: { $regex: location, $options: 'i' },
+    };
+
+    const skip = (Number(page) - 1) * Number(limit);
+    const [ total, empleos ] = await Promise.all([
+      Job.countDocuments(query),
+      Job.find(query)
+         .skip(skip)
+         .limit(Number(limit))
+         // Populamos datos de la empresa
+         .populate('company', 'name logoUrl address description')
+         // Populamos quién creó el empleo
+         .populate('createdBy', 'name surname email')
+         .sort({ createdAt: -1 }) // opcional: ordenar del más nuevo al más antiguo
+    ]);
+
+    res.json({
+      total,
+      page:    Number(page),
+      limit:   Number(limit),
+      results: empleos.map(job => ({
+        id:           job._id,
+        title:        job.title,
+        description:  job.description,
+        requirements: job.requirements,
+        location:     job.location,
+        modality:     job.modality,
+        type:         job.type,
+        category:     job.category,
+        salary:       job.salary,
+        company:      job.company,     // { name, logoUrl, address, description }
+        createdBy:    job.createdBy,   // { name, surname, email }
+        createdAt:    job.createdAt,
+        updatedAt:    job.updatedAt
+      }))
+    });
+  } catch (error) {
+    console.error('❌ Error al obtener mis empleos:', error);
+    res.status(500).json({ msg: 'Error al obtener los empleos de la empresa' });
+  }
+};
+
 // Obtener empleo por ID
 export const getJobById = async (req, res) => {
   try {

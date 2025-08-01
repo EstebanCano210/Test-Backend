@@ -6,7 +6,7 @@ import {
   getCompanies,
   getCompanyById,
   updateCompany,
-  deleteCompany
+  deleteCompany,
 } from './company.controller.js';
 import { validarJWT } from '../middlewares/validar-jwt.js';
 import { validarCampos } from '../middlewares/validar-campos.js';
