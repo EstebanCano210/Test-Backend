@@ -70,7 +70,7 @@ export const getApplicationsByUser = async (req, res) => {
 export const getApplicationsByJob = async (req, res) => {
   try {
     const apps = await Application.find({ job: req.params.jobId })
-      .populate('user', 'name surname email profilePicture')
+      .populate('user', 'name surname email profilePicture cvUrl')  // ← incluimos cvUrl
       .sort({ createdAt: -1 });
 
     res.json(apps);
@@ -87,19 +87,16 @@ export const getCompanyApplications = async (req, res) => {
       return res.status(400).json({ msg: 'No estás asociado a una empresa' });
     }
 
-    // Buscamos todas las aplicaciones cuyo job pertenece a esta empresa
     const apps = await Application.find()
       .populate({
         path: 'job',
         match: { company: companyId, estado: true },
         select: 'title'
       })
-      .populate('user', 'name surname email profilePicture')
+      .populate('user', 'name surname email profilePicture cvUrl')
       .sort({ createdAt: -1 });
 
-    // Filtramos las que realmente tengan job (las de otras empresas vienen con job=null)
     const filtered = apps.filter(a => a.job);
-
     res.json(filtered);
   } catch (err) {
     console.error(err);
